@@ -28,7 +28,7 @@ if [ -n "$(lspci | grep VirtualBox)" ]; then
 #       VBoxLinuxAdditions.run --target /tmp/VBoxLinuxAdditions.run.contents --noexec
 # NB REMOVE_INSTALLATION_DIR=0 is to fix a bug in VBoxLinuxAdditions.run.
 #    See http://stackoverflow.com/a/25943638.
-apt-get -y -q install gcc dkms
+apt-get -y -q install gcc dkms openssh-client
 mkdir -p /mnt
 mount /dev/sr1 /mnt
 while [ ! -f /mnt/VBoxLinuxAdditions.run ]; do sleep 1; done
