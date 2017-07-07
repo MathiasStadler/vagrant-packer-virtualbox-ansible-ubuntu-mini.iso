@@ -28,10 +28,19 @@
     - init new BOX
         * ```sh +x ./init-BOX.sh```
 
-    - run new BOX
+    - run the BOX
         * ``` sh +x ./run-BOX.sh```
 
--- connect to BOX    
+    - connect to BOX
+        * auto login via vagrant
+        * change to root shell  sudo -i  
+        * ``` vagrant ssh```
+
+    - stop the BOX
+        * ``` sh +x ./stop-BOX.sh```
+
+    - clean the BOX
+        * ``` sh +x ./clean-BOX.sh```        
 
 
 
