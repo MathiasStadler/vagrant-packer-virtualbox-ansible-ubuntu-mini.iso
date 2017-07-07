@@ -33,19 +33,20 @@
     * create Vagrantfile => check and edit it 
             * i toke this sample
 
-~~# -*- mode: ruby -*-
+```# -*- mode: ruby -*-
             # vi: set ft=ruby :
             Vagrant.configure(2) do |config|
                 config.vm.box = "ubuntu-mini-box"
                 config.vm.network "forwarded_port", guest: 80, host: 8081
                 # since we haven't Guest additions, so this feature is not support
                 config.vm.synced_folder ".", "/vagrant", disabled: true
+                config.vm.base_mac = "080027D14C66"
 
                 config.vm.provider "virtualbox" do |vb|
                 vb.customize ["modifyvm", :id, "--usb", "on"]
                 vb.customize ["modifyvm", :id, "--usbehci", "off"]
-            end
-        end~~
+    end
+end```
 
 - start BOX
     * vagrant up
@@ -57,7 +58,7 @@
     * vagrant ssh    
 
 
-# Erros
+# ERRORS
  - Build 'ubuntu-16.04-amd64-libvirt' errored: Failed creating Qemu driver: exec: "qemu-system-x86_64": executable file not found in $PATH
     * missing qemu-kvm
     * sudo apt-get install qemu-kvm
