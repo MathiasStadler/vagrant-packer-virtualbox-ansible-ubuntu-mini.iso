@@ -46,20 +46,20 @@
 
 
 
-# Path of steps
-- cd Download 
-- wget https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip
-- unzip  packer_1.0.2_linux_amd64.zip
-- mv packer ..
-- chmpd +x packer
+# Install Packer local
+- ```cd```
+    - I'm now in the my homefolder
+- ``cd Download`` 
+- ```wget https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip```
+    - If wget not installed , install with 
+        * ``` sudo apt-get install wget```
+- ```unzip  packer_1.0.2_linux_amd64.zip```
+- ```mv packer ..```
+- ```cd```
+- ```chmpd +x packer```
+    - Make packer executed
 
-- Validate packer json file
-    * ~/packer validate ubuntu-miniIso-packer.json
-
-- build Box by packer
-    * ~/packer build ubuntu-miniIso-packer.json
-
-# Test BOX generated from PACCKER
+# Test BOX generated from PACKER
 -  add BOX to Vagrant
     * vagrant box add ubuntu-mini-box ./ubuntu-16.04-amd64-virtualbox.box
 - init BOX
