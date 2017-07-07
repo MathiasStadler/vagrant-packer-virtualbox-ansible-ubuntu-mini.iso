@@ -32,7 +32,8 @@
     * vagrant init ubuntu-mini-box
     * create Vagrantfile => check and edit it 
             * i toke this sample
-            ~~# -*- mode: ruby -*-
+
+~~# -*- mode: ruby -*-
             # vi: set ft=ruby :
             Vagrant.configure(2) do |config|
                 config.vm.box = "ubuntu-mini-box"
@@ -46,7 +47,14 @@
             end
         end~~
 
-- start BOX    
+- start BOX
+    * vagrant up
+
+- status of BOX
+    * vagrant status
+
+- connect BOX
+    * vagrant ssh    
 
 
 # Erros
@@ -57,3 +65,5 @@
 
 # CREDITS
 - http://blog.ruilopes.com/from-iso-to-vagrant-box.html => Thx Rui Lopes <https://github.com/rgl>
+- https://gist.github.com/cedricvidal/eab1578c30b30802eaca403a2dd596d5 => Thx Cedric Vidal for the sample
+- https://debianforum.de/forum/viewtopic.php?f=12&t=128867 => Thx Torsten for the german keyboard settings in the preseed.txt file
