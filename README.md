@@ -74,3 +74,7 @@
 # HINTS
 - https://www.vagrantup.com/docs/other/environmental-variables.html => If you want a other .vagrant dir location
     * export VAGRANT_HOME=my/new/path/goes/here/  
+
+- colour in bash srcipt  from here
+    * https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+    * => Thx Greg and Tobi
