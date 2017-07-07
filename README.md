@@ -1,13 +1,38 @@
 # vagrant-packer-virtualbox-ansible-ubuntu-mini.iso
 
 
-#ENV
+# ENV
 - Lenovo m92p
 - host os 16.04.02
-- internet connect
+- internet connection
 
 # Usage
 - Install Packer, Vagrant and VirtualBox.
+
+- clone git repo
+```git clone https://github.com/MathiasStadler/vagrant-packer-virtualbox-ansible-ubuntu-mini.iso.git```
+
+- change to workdir
+``` cd vagrant-packer-virtualbox-ansible-ubuntu-mini.iso ```
+
+- build packer image for virtualbox
+    * I'm install my packer in the home foleder
+    * The finished BOX found you in the box folder
+    * ```~/packer build ubuntu-miniIso-packer.json```
+
+- Run your BOX
+
+-- change to folder box
+    * ```cd box ```
+
+-- init new BOX
+    * ```sh +x ./init-BOX.sh```
+
+-- run new BOX
+    * ``` sh +x ./run-BOX.sh```
+
+-- connect to BOX    
+
 
 
 
