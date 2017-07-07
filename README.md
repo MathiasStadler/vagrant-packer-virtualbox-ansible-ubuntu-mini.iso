@@ -61,9 +61,16 @@
  - Build 'ubuntu-16.04-amd64-libvirt' errored: Failed creating Qemu driver: exec: "qemu-system-x86_64": executable file not found in $PATH
     * missing qemu-kvm
     * sudo apt-get install qemu-kvm
+- No base MAC address was specified. This is required for the NAT networking
+    * I'm forget the MAC Addr in the Vargrantfile
+        * config.vm.base_mac = "080027D14C66"
 
 
 # CREDITS
 - http://blog.ruilopes.com/from-iso-to-vagrant-box.html => Thx Rui Lopes <https://github.com/rgl>
 - https://gist.github.com/cedricvidal/eab1578c30b30802eaca403a2dd596d5 => Thx Cedric Vidal for the sample
 - https://debianforum.de/forum/viewtopic.php?f=12&t=128867 => Thx Torsten for the german keyboard settings in the preseed.txt file
+
+# HINTS
+- https://www.vagrantup.com/docs/other/environmental-variables.html => If you want a other .vagrant dir location
+    * export VAGRANT_HOME=my/new/path/goes/here/  
