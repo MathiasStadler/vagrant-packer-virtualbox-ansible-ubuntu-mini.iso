@@ -34,7 +34,7 @@
     - connect to BOX
         * auto login via vagrant
         * change to root shell  sudo -i  
-        * ``` vagrant ssh```
+            * ``` vagrant ssh```
 
     - stop the BOX
         * ``` sh +x ./stop-BOX.sh```
@@ -47,17 +47,26 @@
 
 
 # Install Packer local
+- Change to the homoefolder
 - ```cd```
     - I'm now in the my homefolder
-- ``cd Download`` 
-- ```wget https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip```
-    - If wget not installed , install with 
-        * ``` sudo apt-get install wget```
-- ```unzip  packer_1.0.2_linux_amd64.zip```
-- ```mv packer ..```
-- ```cd```
-- ```chmpd +x packer```
-    - Make packer executed
+- Change to Downlaod folder    
+    - ``cd Download`` 
+- Download packer 
+    - ```wget https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip```
+        - If wget not installed , install with 
+            - ``` sudo apt-get install wget```
+- Unzip packer in the download folder
+    - ```unzip  packer_1.0.2_linux_amd64.zip```
+
+- Move packer ( Only one bin ) to the homefolder
+    - ```mv packer ..```
+- Change to the homefolder
+    - ```cd```
+- Make packer executable
+    - ```chmpd +x packer```
+- Check packer is running
+    - ```~/packer```
 
 # Test BOX generated from PACKER
 -  add BOX to Vagrant
