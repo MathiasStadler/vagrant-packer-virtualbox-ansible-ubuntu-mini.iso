@@ -13,23 +13,23 @@
 ```git clone https://github.com/MathiasStadler/vagrant-packer-virtualbox-ansible-ubuntu-mini.iso.git```
 
 - change to workdir
-``` cd vagrant-packer-virtualbox-ansible-ubuntu-mini.iso ```
+    * ``` cd vagrant-packer-virtualbox-ansible-ubuntu-mini.iso ```
 
 - build packer image for virtualbox
-    * I'm install my packer in the home foleder
-    * The finished BOX found you in the box folder
+    * I'm install my packer in the home folder
+    * The finished BOX found you in the box subfolder
     * ```~/packer build ubuntu-miniIso-packer.json```
 
 - Run your BOX
 
--- change to folder box
-    * ```cd box ```
+    - change to folder box
+        * ```cd box ```
 
--- init new BOX
-    * ```sh +x ./init-BOX.sh```
+    - init new BOX
+        * ```sh +x ./init-BOX.sh```
 
--- run new BOX
-    * ``` sh +x ./run-BOX.sh```
+    - run new BOX
+        * ``` sh +x ./run-BOX.sh```
 
 -- connect to BOX    
 
