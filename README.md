@@ -31,9 +31,9 @@
 - init BOX
     * vagrant init ubuntu-mini-box
     * create Vagrantfile => check and edit it 
-            * i toke this sample
+    * i used this sample
 
-```# -*- mode: ruby -*-
+```         # -*- mode: ruby -*-
             # vi: set ft=ruby :
             Vagrant.configure(2) do |config|
                 config.vm.box = "ubuntu-mini-box"
@@ -45,8 +45,9 @@
                 config.vm.provider "virtualbox" do |vb|
                 vb.customize ["modifyvm", :id, "--usb", "on"]
                 vb.customize ["modifyvm", :id, "--usbehci", "off"]
-    end
-end```
+                end
+            end
+```
 
 - start BOX
     * vagrant up
