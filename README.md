@@ -10,13 +10,13 @@
 - Install Packer, Vagrant and VirtualBox.
 
 - clone git repo
-```git clone https://github.com/MathiasStadler/vagrant-packer-virtualbox-ansible-ubuntu-mini.iso.git```
+* ```git clone https://github.com/MathiasStadler/vagrant-packer-virtualbox-ansible-ubuntu-mini.iso.git```
 
 - change to workdir
     * ``` cd vagrant-packer-virtualbox-ansible-ubuntu-mini.iso ```
 
 - build image with packer for virtualbox
-    *```run.sh -b ubuntu-miniIso-packer```
+    * ```run.sh -b ubuntu-miniIso-packer```
     * the BOX image found you in the subfolder box
         * manual
             * I'm install my packer in the home folder
@@ -70,38 +70,22 @@
 - Check packer is running
     - ```~/packer```
 
-# Test BOX generated from PACKER
--  add BOX to Vagrant
-    * vagrant box add ubuntu-mini-box ./ubuntu-16.04-amd64-virtualbox.box
-- init BOX
-    * vagrant init ubuntu-mini-box
-    * create Vagrantfile => check and edit it 
-    * i used this sample
+# Install vagrant   
+    * ```wget https://releases.hashicorp.com/vagrant/1.9.6/vagrant_1.9.6_x86_64.deb```
+    * ```sudo dpkg -i  vagrant_1.9.6_x86_64.deb```
 
-```         # -*- mode: ruby -*-
-            # vi: set ft=ruby :
-            Vagrant.configure(2) do |config|
-                config.vm.box = "ubuntu-mini-box"
-                config.vm.network "forwarded_port", guest: 80, host: 8081
-                # since we haven't Guest additions, so this feature is not support
-                config.vm.synced_folder ".", "/vagrant", disabled: true
-                config.vm.base_mac = "080027D14C66"
+# Install VirtualBox-5.1   on 16.04
+    - Delete all old version from VirtualBox
+        * ```sudo apt-get remove virtualbox virtualbox-5.0 virtualbox-4.*```
+    -  Downlaod key for VirtualBox 
+        * ``` wget https://www.virtualbox.org/download/oracle_vbox_2016.asc```
+    
+    - Add key 
+        * ```sudo apt-key add oracle_vbox_2016.asc```
+    
+    - Install VirtualBox-5.1
+        * ```sudo apt-get install -yy virtualbox-5.1 openssh-client```         
 
-                config.vm.provider "virtualbox" do |vb|
-                vb.customize ["modifyvm", :id, "--usb", "on"]
-                vb.customize ["modifyvm", :id, "--usbehci", "off"]
-                end
-            end
-```
-
-- start BOX
-    * vagrant up
-
-- status of BOX
-    * vagrant status
-
-- connect BOX
-    * vagrant ssh    
 
 
 # ERRORS
