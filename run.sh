@@ -34,27 +34,38 @@ fi
 # getopt from here
 # http://wiki.bash-hackers.org/howto/getopts_tutorial
 
+unset image_files_path
 
 unset name
 
-while getopts ":hb:" opt; do
+while getopts "hb:f:" opt; do
   case $opt in
     h)
       echo "Usage: "
       echo "run.sh -b <packerBuildSript.json>" >&2
       exit 0
       ;;
-    b)
-      echo "Build BOX "
-      #echo "packer -b <packerBuildSript.json>" >&2
-      echo "with packerBuildSript file: $OPTARG"
+    b)      
+      echo " ... check install "
+      if [ -z "$image_files_path" ]
+      then
+        echo "please set -f image_files_path"
+        exit 0 
+      fi
       checkInstall
-      $HOME/packer inspect $OPTARG
-        if [ $? -ne 0 ]; then
-            #echo "BOX inspect failed"
+      if [ $? -ne 0 ]; then
             exit 1
-        fi
-      $HOME/packer build $OPTARG
+      fi
+      echo "with packerBuildSript file: $OPTARG"
+      echo " ... validate  $OPTARG"
+      echo " ... command => $HOME/packer validate -var image_files_path=$image_files_path $OPTARG"
+      $HOME/packer validate -var image_files_path=$image_files_path $OPTARG
+      if [ $? -ne 0 ]; then
+            exit 1
+      fi
+      echo " ... build packer.json "
+      echo " ... command => $HOME/packer build -var image_files_path=$image_files_path $OPTARG"
+      $HOME/packer build -var image_files_path=$image_files_path $OPTARG
       exit 0
       ;;
     \?)
@@ -65,8 +76,13 @@ while getopts ":hb:" opt; do
       echo "Option -$OPTARG requires an argument." >&2
       exit 1
       ;;
+    f)
+      echo "image_files_path  $OPTARG " >&2
+      image_files_path=$OPTARG
+      ;;
   esac
 done
+shift $(( OPTIND - 1 ))
 
 if [ -z "$name" ]
 then
