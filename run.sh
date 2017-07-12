@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 function checkInstall {
 #check install 
 # vagrant
@@ -34,6 +33,10 @@ fi
 
 # getopt from here
 # http://wiki.bash-hackers.org/howto/getopts_tutorial
+
+
+unset name
+
 while getopts ":hb:" opt; do
   case $opt in
     h)
@@ -65,12 +68,8 @@ while getopts ":hb:" opt; do
   esac
 done
 
-
-
-
-
-
-
-
-# build BOX via PACKER
-# 
+if [ -z "$name" ]
+then
+   echo "please run -h for help"
+   exit 0 
+fi
