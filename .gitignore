@@ -1,4 +1,5 @@
-*box
+box/*box
 *zip
-packer_cache
-box_workfolder
+packer_cache/*
+box_workfolder/*
+.vagrant
