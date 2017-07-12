@@ -2,8 +2,8 @@
 
 
 # ENV
-- Lenovo m92p
-- host os 16.04.02
+- Lenovo m92p /8GB / SSD
+- Ubuntu 16.04.2 LTS
 - internet connection
 
 # Usage
@@ -80,7 +80,7 @@
 * Install vagrant
     * ```sudo dpkg -i  vagrant_1.9.6_x86_64.deb```
 
-# Install VirtualBox-5.1   on 16.04
+# Install VirtualBox-5.1 on Ubuntu 16.04.2 LTS
 * Delete all old version from VirtualBox
     * ```sudo apt-get remove virtualbox virtualbox-5.0 virtualbox-4.*```
 * Downlaod key for VirtualBox 
