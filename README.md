@@ -16,13 +16,13 @@
     * ``` cd vagrant-packer-virtualbox-ansible-ubuntu-mini.iso ```
 
 * build image with packer for virtualbox
-    * ```run.sh -b ubuntu-miniIso-packer```
+    * ```./run.sh  -f ubuntu_miniIso -b ./ubuntu_miniIso/ubuntu_miniIso_packer.json```
     * the BOX image found you in the subfolder box
         * manual
             * I'm install my packer in the home folder
             * ```~/packer build ubuntu-miniIso-packer.json```
 
-* Run your BOX
+* Run the created BOX
 
     * change to folder box
         * ```cd box ```
