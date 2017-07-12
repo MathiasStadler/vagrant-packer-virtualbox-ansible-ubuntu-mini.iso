@@ -1,0 +1,129 @@
+# disable Predictable Network Interface Names (not supported in Vagrant 1.8.1).
+# enable proxy
+# set locales to de_DE.UTF-8, en_US.UTF-8
+
+
+d-i debian-installer/add-kernel-opts string net.ifnames=0
+d-i preseed/late_command string \
+      for i in 1 2 3; do \
+        echo "auto eth$i" >>/target/etc/network/interfaces; \
+        echo "iface eth$i inet manual" >>/target/etc/network/interfaces; \
+      done
+
+d-i debian-installer/locale string en_US.UTF-8
+d-i localechooser/supported-locales multiselect de_DE.UTF-8, en_US.UTF-8
+
+
+
+
+
+#d-i keyboard-configuration/layoutcode string pt
+
+
+# Keyboard selection.
+# from here
+# https://debianforum.de/forum/viewtopic.php?f=12&t=128867
+# Thx Thorsten
+d-i console-tools/archs select de
+d-i console-keymaps-at/keymap select de
+d-i keyboard-configuration/xkb-keymap select de
+d-i console-setup/modelcode string pc105
+d-i keyboard-configuration/layoutcode string de
+d-i console-setup/variantcode string nodeadkeys
+d-i console-setup/ask_detect boolean false
+
+
+
+d-i mirror/country string manual
+d-i mirror/http/hostname string ch.archive.ubuntu.com
+d-i mirror/http/directory string /ubuntu
+d-i mirror/http/proxy string http://192.168.178.32:3128
+
+# System clock
+d-i clock-setup/utc boolean true
+# TZ Zone
+d-i time/zone string UTC
+
+
+# Partition
+###
+d-i finish-install/reboot_in_progress note
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/with_other_os boolean true
+d-i partman-auto-lvm/guided_size string max
+d-i partman-auto/choose_recipe select custom-lvm
+d-i partman-auto/method string lvm
+d-i partman-lvm/confirm boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+d-i partman-lvm/device_remove_lvm boolean true
+
+# For LVM partitioning, you can select how much of the volume group to use
+# for logical volumes.
+d-i partman-auto-lvm/guided_size string max
+#d-i partman-auto-lvm/guided_size string 10GB
+#d-i partman-auto-lvm/guided_size string 50%
+
+d-i partman-auto-lvm/new_vg_name string vg-workstation
+
+# Or provide a recipe of your own...
+# If you have a way to get a recipe file into the d-i environment, you can
+# just point at it.
+#d-i partman-auto/expert_recipe_file string /hd-media/recipe
+
+# If not, you can put an entire recipe into the preconfiguration file in one
+# (logical) line. This example creates a small /boot partition, suitable
+# swap, and uses the rest of the space for the root partition:
+d-i partman-auto/expert_recipe string                         \
+      custom-lvm ::                                           \
+        250 250 250 ext4 $primary{ } $bootable{ }             \
+        mountpoint{ /boot }                                   \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        .                                                     \
+        5120 20480 1000000 ext4 $lvmok{ }                     \
+        mountpoint{ / }                                       \
+        lv_name{ root }                                       \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        .                                                     \
+        4096 8192 200% linux-swap $lvmok{ }                   \
+        lv_name{ swap }                                       \
+        in_vg { vg-workstation }                              \
+        method{ swap }                                        \
+        format{ }                                             \
+        .
+
+
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i partman/confirm_write_new_label boolean true
+d-i pkgsel/include string openssh-server cryptsetup build-essential libssl-dev libreadline-dev zlib1g-dev linux-source dkms nfs-common
+
+
+###
+#d-i partman-auto/method string regular
+#d-i partman-auto/choose_recipe select atomic
+#d-i partman/choose_partition select finish
+#d-i partman/confirm_nooverwrite boolean true
+
+d-i grub-installer/only_debian boolean true
+d-i finish-install/reboot_in_progress note
+
+d-i passwd/user-fullname string vagrant
+d-i passwd/username string vagrant
+d-i passwd/user-password password vagrant
+d-i passwd/user-password-again password vagrant
+d-i user-setup/allow-password-weak boolean true
+d-i user-setup/encrypt-home boolean false
+
+tasksel tasksel/first multiselect
+d-i pkgsel/include string openssh-server
+d-i pkgsel/upgrade select full-upgrade
+d-i pkgsel/update-policy select none
