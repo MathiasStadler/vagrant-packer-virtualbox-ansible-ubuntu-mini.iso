@@ -104,6 +104,7 @@
 - http://blog.ruilopes.com/from-iso-to-vagrant-box.html => Thx Rui Lopes <https://github.com/rgl>
 - https://gist.github.com/cedricvidal/eab1578c30b30802eaca403a2dd596d5 => Thx Cedric Vidal for the sample
 - https://debianforum.de/forum/viewtopic.php?f=12&t=128867 => Thx Torsten for the german keyboard settings in the preseed.txt file
+* https://stackoverflow.com/questions/7529856/bash-getopts-retrieving-multiple-variables-from-one-flag => Thx Glenn <https://stackoverflow.com/users/7552/glenn-jackman>
 
 # HINTS
 - https://www.vagrantup.com/docs/other/environmental-variables.html => If you want a other .vagrant dir location
